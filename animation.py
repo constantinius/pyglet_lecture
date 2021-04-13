@@ -28,7 +28,6 @@ idle_right = image_grid[9 * 13]
 sprite = pyglet.sprite.Sprite(idle_right, window.width / 2, window.height / 2)
 
 
-@window.event
 def on_draw():
     ...
 
@@ -37,7 +36,6 @@ def on_draw():
 # animation.
 
 
-@window.event
 def on_key_press(symbol, modifiers):
     ...
 
@@ -45,9 +43,16 @@ def on_key_press(symbol, modifiers):
 # set up the key-release event: either of the arrow keys is released,
 # set the sprites image to the "idle" animation of that direction
 
-@window.event
 def on_key_release(symbol, modifiers):
     ...
+
+
+window.push_handlers(
+    on_draw=on_draw,
+    on_key_press=on_key_press,
+    on_key_release=on_key_release,
+)
+
 
 
 # set up the movement logic. We set the movement speed to 30 pixels/second
