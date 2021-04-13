@@ -29,7 +29,8 @@ sprite = pyglet.sprite.Sprite(idle_right, window.width / 2, window.height / 2)
 
 
 def on_draw():
-    ...
+    window.clear()
+    sprite.draw()
 
 # set up the key-press event: when the LEFT, RIGHT, TOP, UP or DOWN keys
 # are pressed, exchange the sprites animation to the according walking
@@ -37,14 +38,28 @@ def on_draw():
 
 
 def on_key_press(symbol, modifiers):
-    ...
+    if symbol == key.UP:
+        sprite.image = walk_up
+    elif symbol == key.DOWN:
+        sprite.image = walk_down
+    elif symbol == key.LEFT:
+        sprite.image = walk_left
+    elif symbol == key.RIGHT:
+        sprite.image = walk_right
 
 
 # set up the key-release event: either of the arrow keys is released,
 # set the sprites image to the "idle" animation of that direction
 
 def on_key_release(symbol, modifiers):
-    ...
+    if symbol == key.UP:
+        sprite.image = idle_up
+    elif symbol == key.DOWN:
+        sprite.image = idle_down
+    elif symbol == key.LEFT:
+        sprite.image = idle_left
+    elif symbol == key.RIGHT:
+        sprite.image = idle_right
 
 
 window.push_handlers(
@@ -64,8 +79,15 @@ WALK_SPEED = 30
 # We multiply by `dt` (delta-time, i.e how much time has passed) to smooth out
 # the movement
 
-def tick(dt):
-    ...
+def tick(t):
+    if sprite.image == walk_up:
+        sprite.y = sprite.y + (WALK_SPEED * t)
+    elif sprite.image == walk_down:
+        sprite.y = sprite.y - (WALK_SPEED * t)
+    elif sprite.image == walk_left:
+        sprite.x = sprite.x - (WALK_SPEED * t)
+    elif sprite.image == walk_right:
+        sprite.x = sprite.x + (WALK_SPEED * t)
 
 # we schedule the interval here
 
