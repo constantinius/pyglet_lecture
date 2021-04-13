@@ -59,11 +59,12 @@ WALK_SPEED = 30
 # We multiply by `dt` (delta-time, i.e how much time has passed) to smooth out
 # the movement
 
-
+def tick(dt):
+    ...
 
 # we schedule the interval here
 
-# pyglet.clock.schedule_interval(tick, 1/60)
+pyglet.clock.schedule_interval(tick, 1/60)
 
 
 # finally start the application
